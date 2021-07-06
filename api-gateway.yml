@@ -1,0 +1,42 @@
+server:
+  port: 8181
+  
+spring:
+  application:
+    name: api-gateway
+    
+hostname:
+  server: localhost
+
+#routers
+zuul:
+    routes:
+        customer:
+            path: /api/customer-service/**
+            service-id: customer-service
+            url: http://${hostname.server}:8088/
+        product:
+            path: /api/product-service/**
+            service-id: product-service
+            url: http://${hostname.server}:8081/
+        transaction:
+            path: /api/transaction-service/**
+            service-id: transaction-service
+            url: http://${hostname.server}:8082/
+        representative:
+            path: /api/representative-service/**
+            service-id: representative-service
+            url: http://${hostname.server}:8083/
+        movement:
+            path: /api/withdrawal-service/**
+            service-id: withdrawal-service
+            url: http://${hostname.server}:8085/
+        credit:
+            path: /api/credit-service/**
+            service-id: credit-service
+            url: http://${hostname.server}:8086/
+        creditcard:
+            path: /api/creditcard-service
+            service-id: creditcard-service
+            url: http://${hostname.server}:8087/
+        
